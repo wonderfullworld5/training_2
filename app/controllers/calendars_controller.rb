@@ -5,20 +5,20 @@ class CalendarsController < ApplicationController
     get_week
     @plan = Plan.new
   end
+
   # 予定の保存
   def create
     Plan.create(plan_params)
     redirect_to action: :index
   end
-  private
 
+  private
   def plan_params
     params.require(:calendars).permit(:date, :plan)
   end
 
   def get_week
     wdays = ['(日)','(月)','(火)','(水)','(木)','(金)','(土)']
-
     def japanese_weekday_name(wday_num)
       weekday_names = ["日", "月", "火", "水", "木", "金", "土"]
       weekday_names[wday_num]
@@ -36,7 +36,7 @@ class CalendarsController < ApplicationController
       wday_num = (@todays_date + x).wday
       wday_num = 0 if wday_num == 7 # wdayが7の場合、0に修正する
 
-      days = { month: (@todays_date + x).month, date: (@todays_date + x).day, plans: today_plans, wday: japanese_weekday_name(wday_num) }
+      days = { month: (@todays_date + x).month, date: (@todays_date + x).day, plans: today_plans, wday:japanese_weekday_name(wday_num)}
       @week_days.push(days)
     end
   end
