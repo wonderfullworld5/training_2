@@ -36,6 +36,7 @@ class CalendarsController < ApplicationController
 
     plans = Plan.where(date: @todays_date..@todays_date + 6).order(:date)
 
+
 7.times do |x|
   today = @todays_date + x
   today_plans = plans.select { |plan| plan.date == today }.map(&:plan)
