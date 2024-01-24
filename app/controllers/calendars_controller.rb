@@ -21,6 +21,8 @@ class CalendarsController < ApplicationController
   def japanese_weekday_name(wday_num)
     weekday_names = %w(日 月 火 水 木 金 土)
     weekday_names[wday_num]
+    "(#{weekday_names[wday_num]})"
+
   end
 
   def get_week
